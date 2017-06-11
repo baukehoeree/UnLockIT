@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="../static/img/favicon.png" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>Un/Lock IT - Overview</title>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+    <!-- Bootstrap core CSS     -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" />
+
+    <!--  Material Dashboard CSS    -->
+    <link href="{{ url_for('static', filename='css/material-dashboard.css') }}" rel="stylesheet"/>
+
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+<div class="wrapper">
+	<div class="sidebar" data-active-color="red" data-background-color="white">
+		<!--
+    Tip 1: You can change the color of active element of the sidebar using: data-active-color="purple | blue | green | orange | red | rose"
+    Tip 2: you can also add an image using data-image tag
+    Tip 3: you can change the color of the sidebar with data-background-color="white | black"
+-->
+		<div class="logo">
+            <a href="#" class="simple-text">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" width="200"/>
+            </a>
+        </div>
+        <div class="logo logo-mini">
+            <a href="http://www.creative-tim.com" class="simple-text">
+                <img src="{{ url_for('static', filename='img/logoShort.png') }}" width="120"/>
+            </a>
+        </div>
+        <div class="sidebar-wrapper">
+            <ul class="nav">
+                <li>
+                    <a href="{{ url_for('home') }}">
+                        <i class="material-icons">dashboard</i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li  class="active">
+                    <a href="{{ url_for('overview') }}">
+                        <i class="material-icons">view_list</i>
+                        <p>Overview</p>
+                    </a>
+                </li>
+                <li>
+                    <a data-toggle="collapse" href="#pagesExamples">
+                        <i class="material-icons">show_chart</i>
+                        <p>Data & Statistics
+                            <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse" id="pagesExamples">
+                        <ul class="nav">
+                            <li>
+                                <a href="{{ url_for('dataOpen') }}">Data Open/Close</a>
+                            </li>
+                            <li>
+                                <a href="{{ url_for('dataMotion') }}">Data Motion Sensor</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+	</div>
+	<div class="main-panel">
+		<nav class="navbar navbar-transparent navbar-absolute">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#"> Overview </a>
+				</div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="material-icons">person</i> {% if mail_session %}{{ mail_session }}{% endif %}
+                                <p class="hidden-lg hidden-md">
+                                    Account
+                                </p>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#"><i class="material-icons">edit</i>&nbsp;&nbsp; Edit profile</a>
+                                </li>
+                                <li>
+                                    <a href="{{ url_for('logout') }}" class="red"><i class="material-icons">exit_to_app</i>&nbsp;&nbsp; Log out</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="separator hidden-lg hidden-md"></li>
+                    </ul>
+                </div>
+			</div>
+		</nav>
+		<div class="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="card card-stats">
+							<div class="card-header" data-background-color="green">
+								<i class="material-icons">lock_open</i>
+							</div>
+							<div class="card-content">
+								<p class="category">ULIT-125</p>
+								<h3 class="title">Achterdeur</h3>
+							</div>
+							<div class="card-footer">
+								<div class="stats">
+									<i class="material-icons">schedule</i> Last interaction: 20min ago
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="card card-stats">
+							<div class="card-header" data-background-color="red">
+								<i class="material-icons">lock_outline</i>
+							</div>
+							<div class="card-content">
+								<p class="category">ULIT-250</p>
+								<h3 class="title">Voordeur</h3>
+							</div>
+							<div class="card-footer">
+								<div class="stats">
+									<i class="material-icons">schedule</i> Last interaction: 2h ago
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<footer class="footer">
+			<div class="container-fluid">
+                <nav class="pull-left">
+                        <ul>
+                            <li>
+                                <a href="{{ url_for('contact') }}">
+                                    Contact
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+				<p class="copyright pull-right">
+					&copy;
+					<script>
+                        document.write(new Date().getFullYear())
+					</script>
+					Un/Lock IT, all rights reserved
+				</p>
+			</div>
+		</footer>
+	</div>
+</div>
+</body>
+<!--   Core JS Files   -->
+<script src="{{ url_for('static', filename='js/jquery-3.1.1.min.js') }}" type="text/javascript"></script>
+<script src="{{ url_for('static', filename='js/jquery-ui.min.js') }}" type="text/javascript"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}" type="text/javascript"></script>
+<script src="{{ url_for('static', filename='js/material.min.js') }}" type="text/javascript"></script>
+<script src="{{ url_for('static', filename='js/perfect-scrollbar.jquery.min.js') }}" type="text/javascript"></script>
+<!-- Forms Validations Plugin -->
+<script src="{{ url_for('static', filename='js/jquery.validate.min.js') }}"></script>
+<!--  Plugin for Date Time Picker and Full Calendar Plugin-->
+<script src="{{ url_for('static', filename='js/moment.min.js') }}"></script>
+<!--  Charts Plugin -->
+<script src="{{ url_for('static', filename='js/chartist.min.js') }}"></script>
+<!--  Plugin for the Wizard -->
+<script src="{{ url_for('static', filename='js/jquery.bootstrap-wizard.js') }}"></script>
+<!--  Notifications Plugin    -->
+<script src="{{ url_for('static', filename='js/bootstrap-notify.js') }}"></script>
+<!--   Sharrre Library    -->
+<script src="{{ url_for('static', filename='js/jquery.sharrre.js') }}"></script>
+<!-- DateTimePicker Plugin -->
+<script src="{{ url_for('static', filename='js/bootstrap-datetimepicker.js') }}"></script>
+<!-- Vector Map plugin -->
+<script src="{{ url_for('static', filename='js/jquery-jvectormap.js') }}"></script>
+<!-- Sliders Plugin -->
+<script src="{{ url_for('static', filename='js/nouislider.min.js') }}"></script>
+<!-- Select Plugin -->
+<script src="{{ url_for('static', filename='js/jquery.select-bootstrap.js') }}"></script>
+<!--  DataTables.net Plugin    -->
+<script src="{{ url_for('static', filename='js/jquery.datatables.js') }}"></script>
+<!-- Sweet Alert 2 plugin -->
+<script src="{{ url_for('static', filename='js/sweetalert2.js') }}"></script>
+<!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+<script src="{{ url_for('static', filename='js/jasny-bootstrap.min.js') }}"></script>
+<!--  Full Calendar Plugin    -->
+<script src="{{ url_for('static', filename='js/fullcalendar.min.js') }}"></script>
+<!-- TagsInput Plugin -->
+<script src="{{ url_for('static', filename='js/jquery.tagsinput.js') }}"></script>
+<!-- Material Dashboard javascript methods -->
+<script src="{{ url_for('static', filename='js/material-dashboard.js') }}"></script>
+</html>

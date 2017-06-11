@@ -1,0 +1,77 @@
+
+/* Login & Register */
+
+.login-page > .content-login, .lock-page > .content-login {
+    padding-top: 30vh;
+}
+
+.full-page[filter-color="white"]:after, .full-page[filter-color="white"]:after {
+    background: rgba(255, 255, 255, 0.4);
+    /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(60deg, rgba(255, 255, 255, 0.41), rgba(79, 79, 79, 0.81));
+    /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(60deg, rgba(255, 255, 255, 0.41), rgba(79, 79, 79, 0.81));
+    /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(60deg, rgba(255, 255, 255, 0.4), rgba(79, 79, 79, 0.8));
+    /* For Firefox 3.6 to 15 */
+    background: linear-gradient(60deg, rgba(255, 255, 255, 0.56), rgba(79, 79, 79, 0.81));
+}
+
+.card-signup{
+    height: 550px;
+ }
+
+.login-page > .content-signin, .lock-page > .content-signin {
+    padding-top: 13vh;
+}
+.titleRegister{
+    margin-top: 27px !important;
+}
+
+/* Dashboard */
+
+.card-stats .title {
+    margin: 0;
+}
+.card-stats .card-header {
+    float: left;
+    text-align: center;
+}
+.card-stats .card-header i {
+    font-size: 36px;
+    line-height: 56px;
+    width: 56px;
+    height: 56px;
+}
+.card-stats .card-content {
+    text-align: right;
+    padding-top: 10px;
+}
+.navbar-brand{
+    font-size: 20px;
+}
+.main-panel .content{
+    padding: 24.5px 15px;
+}
+
+.sidebar .logo{
+    padding: 10px 10px;
+}
+
+.navbar-absolute{
+    padding-top: 17.5px;
+}
+
+.contactMap{
+    height: 200px;
+}
+.red{
+    color:red;
+}
+.boldText{
+    font-weight: bolder !important;
+}
+
+.fout{
+    text-align: center;
+}
