@@ -115,32 +115,26 @@
 				<div class="row">
 					<div class="col-lg-3 col-md-6 col-sm-6">
 						<div class="card card-stats">
-							<div class="card-header" data-background-color="green">
-								<i class="material-icons">lock_open</i>
-							</div>
+                            {% if pins[12].state == true %}
+                                <a href="/overview/12/locked">
+                                    <div class="card-header" data-background-color="green">
+                                        <i class="material-icons">lock_open</i>
+                                    </div>
+                                </a>
+                            {% else %}
+                                <a href="/overview/12/open">
+                                    <div class="card-header" data-background-color="red">
+                                        <i class="material-icons">lock_outline</i>
+                                    </div>
+                                </a>
+                            {% endif %}
 							<div class="card-content">
 								<p class="category">ULIT-125</p>
-								<h3 class="title">Achterdeur</h3>
-							</div>
-							<div class="card-footer">
-								<div class="stats">
-									<i class="material-icons">schedule</i> Last interaction: 20min ago
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6 col-sm-6">
-						<div class="card card-stats">
-							<div class="card-header" data-background-color="red">
-								<i class="material-icons">lock_outline</i>
-							</div>
-							<div class="card-content">
-								<p class="category">ULIT-250</p>
 								<h3 class="title">Voordeur</h3>
 							</div>
 							<div class="card-footer">
 								<div class="stats">
-									<i class="material-icons">schedule</i> Last interaction: 2h ago
+									<i class="material-icons">schedule</i> Last interaction: 20min ago
 								</div>
 							</div>
 						</div>

@@ -99,7 +99,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="#"><i class="material-icons">edit</i>&nbsp;&nbsp; Edit profile</a>
+                                    <a href="{{ url_for('profile') }}"><i class="material-icons">edit</i>&nbsp;&nbsp; Edit profile</a>
                                 </li>
                                 <li>
                                     <a href="{{ url_for('logout') }}" class="red"><i class="material-icons">exit_to_app</i>&nbsp;&nbsp; Log out</a>
@@ -114,7 +114,101 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card">
+                            <div class="card-header card-header-text" data-background-color="red">
+                                    <h4 class="card-title">Status</h4>
+                                    <p class="category">Status to set the locks editable or not.</p>
+                                </div>
+                            <div class="card-content">
+                                <div class="row">
+                                    <div class="col-md-6 text-center"><button class="btn btn-danger btn-gray bigBtn"><i class="material-icons">home</i> Home</button></div>
+                                    <div class="col-md-6 text-center"><button class="btn btn-default bigBtn"><i class="material-icons">directions_walk</i> Away</button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="row">
+                    <div class="col-lg-6 col-md-12">
+                            <div class="card">
+                                <div class="card-header card-header-icon" data-background-color="red">
+                                <i class="material-icons">lock</i>
+                            </div>
+                                <div class="card-content table-responsive">
+                                <h4 class="card-title">Data open/close
+                                </h4>
+                                    <table class="table table-hover">
+                                        <thead class="text-danger">
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Salary</th>
+                                            <th>Country</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Dakota Rice</td>
+                                                <td>$36,738</td>
+                                                <td>Niger</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>Minerva Hooper</td>
+                                                <td>$23,789</td>
+                                                <td>Curaçao</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>Sage Rodriguez</td>
+                                                <td>$56,142</td>
+                                                <td>Netherlands</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="col-lg-6 col-md-12">
+                            <div class="card">
+                                <div class="card-header card-header-icon" data-background-color="red">
+                                <i class="material-icons">track_changes</i>
+                            </div>
+                                <div class="card-content table-responsive">
+                                <h4 class="card-title">Data sensor
+                                </h4>
+                                    <table class="table table-hover">
+                                        <thead class="text-danger">
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Salary</th>
+                                            <th>Country</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Dakota Rice</td>
+                                                <td>$36,738</td>
+                                                <td>Niger</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>Minerva Hooper</td>
+                                                <td>$23,789</td>
+                                                <td>Curaçao</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>Sage Rodriguez</td>
+                                                <td>$56,142</td>
+                                                <td>Netherlands</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                 </div>
             </div>
         </div>

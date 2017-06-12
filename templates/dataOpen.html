@@ -43,7 +43,7 @@
         </div>
         <div class="sidebar-wrapper">
             <ul class="nav">
-                <li class="active">
+                <li>
                     <a href="{{ url_for('home') }}">
                         <i class="material-icons">dashboard</i>
                         <p>Dashboard</p>
@@ -55,7 +55,7 @@
                         <p>Overview</p>
                     </a>
                 </li>
-                <li>
+                <li  class="active">
                     <a data-toggle="collapse" href="#pagesExamples">
                         <i class="material-icons">show_chart</i>
                         <p>Data & Statistics
@@ -86,7 +86,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#"> Dashboard </a>
+                    <a class="navbar-brand" href="#"> Data Open/Close </a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -99,7 +99,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="#"><i class="material-icons">edit</i>&nbsp;&nbsp; Edit profile</a>
+                                    <a href="{{ url_for('profile') }}"><i class="material-icons">edit</i>&nbsp;&nbsp; Edit profile</a>
                                 </li>
                                 <li>
                                     <a href="{{ url_for('logout') }}" class="red"><i class="material-icons">exit_to_app</i>&nbsp;&nbsp; Log out</a>

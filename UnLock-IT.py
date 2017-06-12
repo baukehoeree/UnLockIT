@@ -1,9 +1,22 @@
 from flask import Flask, session, redirect, url_for, escape, request, render_template
 import hashlib
 import os
+import RPi.GPIO as GPIO
 from DbClass import DbClass
 
 app = Flask(__name__)
+
+GPIO.setmode(GPIO.BCM)
+
+# Create a dictionary called pins to store the pin number, name, and pin state:
+pins = {
+   12 : {'name' : 'lock', 'state' : GPIO.HIGH}
+   }
+
+# Set each pin as an output and make it low:
+for pin in pins:
+   GPIO.setup(pin, GPIO.OUT)
+   GPIO.output(pin, GPIO.LOW)
 
 @app.route('/')
 def dashboard():
@@ -112,8 +125,12 @@ def home():
 def overview():
     if 'email' in session:
         mail_session = escape(session['email'])
-
-        return render_template('overview.html', mail_session=mail_session)
+        for pin in pins:
+            pins[pin]['state'] = GPIO.input(pin)
+        templateData = {
+            'pins': pins
+        }
+        return render_template('overview.html', mail_session=mail_session, **templateData)
     return redirect(url_for('login'))
 
 @app.route('/dataOpen')
@@ -130,7 +147,34 @@ def dataMotion():
         return render_template('dataMotion.html', mail_session=mail_session)
     return redirect(url_for('login'))
 
+@app.route('/profile')
+def profile():
+    if 'email' in session:
+        mail_session = escape(session['email'])
+        return render_template('profile.html', mail_session=mail_session)
+    return redirect(url_for('login'))
 
+
+# DATACOM PART
+
+@app.route("/overview/<changePin>/<action>")
+def action(changePin, action):
+    if 'email' in session:
+        mail_session = escape(session['email'])
+        changePin = int(changePin)
+        if action == "open":
+          GPIO.output(changePin, GPIO.HIGH)
+        if action == "locked":
+          GPIO.output(changePin, GPIO.LOW)
+        if action == "toggle":
+          GPIO.output(changePin, not GPIO.input(changePin))
+        for pin in pins:
+          pins[pin]['state'] = GPIO.input(pin)
+        templateData = {
+          'pins' : pins
+        }
+
+        return render_template('overview.html', mail_session=mail_session, **templateData)
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT",8080))
