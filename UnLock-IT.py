@@ -2,21 +2,28 @@ from flask import Flask, session, redirect, url_for, escape, request, render_tem
 import hashlib
 import os
 import RPi.GPIO as GPIO
+import time
+
+print("applicatie word geladen...")
 from DbClass import DbClass
+time.sleep(10)
+print("applicatie geladen!")
+
+GPIO.setwarnings(False)
 
 app = Flask(__name__)
 
 GPIO.setmode(GPIO.BCM)
-
 # Create a dictionary called pins to store the pin number, name, and pin state:
 pins = {
-   12 : {'name' : 'lock', 'state' : GPIO.HIGH}
+   12 : {'name' : 'lock', 'state' : GPIO.LOW}
    }
 
 # Set each pin as an output and make it low:
 for pin in pins:
-   GPIO.setup(pin, GPIO.OUT)
-   GPIO.output(pin, GPIO.LOW)
+    print(pin)
+    GPIO.setup(pin, GPIO.OUT)
+    GPIO.output(pin, GPIO.LOW)
 
 @app.route('/')
 def dashboard():
