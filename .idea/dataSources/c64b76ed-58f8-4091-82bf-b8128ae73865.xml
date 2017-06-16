@@ -11,249 +11,277 @@
     <schema id="5" parent="1" name="performance_schema"/>
     <table id="6" parent="2" name="access"/>
     <table id="7" parent="2" name="categories"/>
-    <table id="8" parent="2" name="motion"/>
-    <table id="9" parent="2" name="rfid"/>
-    <table id="10" parent="2" name="status"/>
-    <table id="11" parent="2" name="system"/>
-    <table id="12" parent="2" name="system_has_rfid"/>
-    <table id="13" parent="2" name="users"/>
-    <column id="14" parent="6" name="IDAccess">
+    <table id="8" parent="2" name="contact"/>
+    <table id="9" parent="2" name="motion"/>
+    <table id="10" parent="2" name="rfid"/>
+    <table id="11" parent="2" name="status"/>
+    <table id="12" parent="2" name="system"/>
+    <table id="13" parent="2" name="system_has_rfid"/>
+    <table id="14" parent="2" name="users"/>
+    <column id="15" parent="6" name="IDAccess">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="15" parent="6" name="Openned">
+    <column id="16" parent="6" name="Openned">
       <Position>2</Position>
       <DataType>tinyint(1)|0</DataType>
     </column>
-    <column id="16" parent="6" name="DATE">
+    <column id="17" parent="6" name="DATE">
       <Position>3</Position>
       <DataType>date|0</DataType>
     </column>
-    <column id="17" parent="6" name="TIME">
+    <column id="18" parent="6" name="TIME">
       <Position>4</Position>
       <DataType>time|0</DataType>
     </column>
-    <column id="18" parent="6" name="system_IDSystem">
+    <column id="19" parent="6" name="system_IDSystem">
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="19" parent="6" name="categories_IDCategory">
+    <column id="20" parent="6" name="categories_IDCategory">
       <Position>6</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="20" parent="6" name="fk_access_categories1_idx">
+    <index id="21" parent="6" name="fk_access_categories1_idx">
       <ColNames>categories_IDCategory</ColNames>
     </index>
-    <index id="21" parent="6" name="fk_access_system1_idx">
+    <index id="22" parent="6" name="fk_access_system1_idx">
       <ColNames>system_IDSystem</ColNames>
     </index>
-    <key id="22" parent="6" name="PRIMARY">
+    <key id="23" parent="6" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>IDAccess
 system_IDSystem
 categories_IDCategory</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="23" parent="6" name="fk_access_system1">
+    <foreign-key id="24" parent="6" name="fk_access_system1">
       <ColNames>system_IDSystem</ColNames>
       <RefSchemaName>dbUnLockIT</RefSchemaName>
       <RefTableName>system</RefTableName>
       <RefColNames>IDSystem</RefColNames>
     </foreign-key>
-    <foreign-key id="24" parent="6" name="fk_access_categories1">
+    <foreign-key id="25" parent="6" name="fk_access_categories1">
       <ColNames>categories_IDCategory</ColNames>
       <RefSchemaName>dbUnLockIT</RefSchemaName>
       <RefTableName>categories</RefTableName>
       <RefColNames>IDCategory</RefColNames>
     </foreign-key>
-    <column id="25" parent="7" name="IDCategory">
+    <column id="26" parent="7" name="IDCategory">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="26" parent="7" name="Category">
+    <column id="27" parent="7" name="Category">
       <Position>2</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <key id="27" parent="7" name="PRIMARY">
+    <key id="28" parent="7" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>IDCategory</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="28" parent="8" name="IDMotion">
+    <column id="29" parent="8" name="IDcontact">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="29" parent="8" name="Date">
+    <column id="30" parent="8" name="fullname">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="31" parent="8" name="telephone">
+      <Position>3</Position>
+      <DataType>varchar(15)|0</DataType>
+    </column>
+    <column id="32" parent="8" name="message">
+      <Position>5</Position>
+      <DataType>varchar(200)|0</DataType>
+    </column>
+    <column id="33" parent="8" name="mail">
+      <Position>4</Position>
+      <DataType>varchar(45)|0</DataType>
+    </column>
+    <key id="34" parent="8" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>IDcontact</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="35" parent="9" name="IDMotion">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="36" parent="9" name="Date">
       <Position>2</Position>
       <DataType>date|0</DataType>
     </column>
-    <column id="30" parent="8" name="Time">
+    <column id="37" parent="9" name="Time">
       <Position>3</Position>
       <DataType>time|0</DataType>
     </column>
-    <column id="31" parent="8" name="system_IDSystem">
+    <column id="38" parent="9" name="system_IDSystem">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="32" parent="8" name="fk_motion_system1_idx">
+    <index id="39" parent="9" name="fk_motion_system1_idx">
       <ColNames>system_IDSystem</ColNames>
     </index>
-    <key id="33" parent="8" name="PRIMARY">
+    <key id="40" parent="9" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>IDMotion
 system_IDSystem</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="34" parent="8" name="fk_motion_system1">
+    <foreign-key id="41" parent="9" name="fk_motion_system1">
       <ColNames>system_IDSystem</ColNames>
       <RefSchemaName>dbUnLockIT</RefSchemaName>
       <RefTableName>system</RefTableName>
       <RefColNames>IDSystem</RefColNames>
     </foreign-key>
-    <column id="35" parent="9" name="IDRFID">
+    <column id="42" parent="10" name="IDRFID">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="36" parent="9" name="RFIDNo">
+    <column id="43" parent="10" name="RFIDNo">
       <Position>2</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <column id="37" parent="9" name="users_IDUser">
+    <column id="44" parent="10" name="users_IDUser">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="38" parent="9" name="fk_rfid_users_idx">
+    <index id="45" parent="10" name="fk_rfid_users_idx">
       <ColNames>users_IDUser</ColNames>
     </index>
-    <index id="39" parent="9" name="RFIDNo_UNIQUE">
+    <index id="46" parent="10" name="RFIDNo_UNIQUE">
       <ColNames>RFIDNo</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="40" parent="9" name="PRIMARY">
+    <key id="47" parent="10" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>IDRFID
 users_IDUser</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="41" parent="9" name="RFIDNo_UNIQUE">
+    <key id="48" parent="10" name="RFIDNo_UNIQUE">
       <ColNames>RFIDNo</ColNames>
       <UnderlyingIndexName>RFIDNo_UNIQUE</UnderlyingIndexName>
     </key>
-    <foreign-key id="42" parent="9" name="fk_rfid_users">
+    <foreign-key id="49" parent="10" name="fk_rfid_users">
       <ColNames>users_IDUser</ColNames>
       <RefSchemaName>dbUnLockIT</RefSchemaName>
       <RefTableName>users</RefTableName>
       <RefColNames>IDUser</RefColNames>
     </foreign-key>
-    <column id="43" parent="10" name="IDStatus">
+    <column id="50" parent="11" name="IDStatus">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="44" parent="10" name="Description">
+    <column id="51" parent="11" name="Description">
       <Position>2</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <key id="45" parent="10" name="PRIMARY">
+    <key id="52" parent="11" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>IDStatus</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="46" parent="11" name="IDSystem">
+    <column id="53" parent="12" name="IDSystem">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="47" parent="11" name="SerialNo">
+    <column id="54" parent="12" name="SerialNo">
       <Position>2</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <column id="48" parent="11" name="Name">
+    <column id="55" parent="12" name="Name">
       <Position>3</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <column id="49" parent="11" name="StateUse">
+    <column id="56" parent="12" name="StateUse">
       <Position>4</Position>
       <DataType>tinyint(1)|0</DataType>
     </column>
-    <column id="50" parent="11" name="status_IDStatus">
+    <column id="57" parent="12" name="status_IDStatus">
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="51" parent="11" name="fk_system_status1_idx">
+    <index id="58" parent="12" name="fk_system_status1_idx">
       <ColNames>status_IDStatus</ColNames>
     </index>
-    <index id="52" parent="11" name="SerialNo_UNIQUE">
+    <index id="59" parent="12" name="SerialNo_UNIQUE">
       <ColNames>SerialNo</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="53" parent="11" name="PRIMARY">
+    <key id="60" parent="12" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>IDSystem
 status_IDStatus</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="54" parent="11" name="SerialNo_UNIQUE">
+    <key id="61" parent="12" name="SerialNo_UNIQUE">
       <ColNames>SerialNo</ColNames>
       <UnderlyingIndexName>SerialNo_UNIQUE</UnderlyingIndexName>
     </key>
-    <foreign-key id="55" parent="11" name="fk_system_status1">
+    <foreign-key id="62" parent="12" name="fk_system_status1">
       <ColNames>status_IDStatus</ColNames>
       <RefSchemaName>dbUnLockIT</RefSchemaName>
       <RefTableName>status</RefTableName>
       <RefColNames>IDStatus</RefColNames>
     </foreign-key>
-    <column id="56" parent="12" name="system_IDSystem">
+    <column id="63" parent="13" name="system_IDSystem">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="57" parent="12" name="rfid_IDRFID">
+    <column id="64" parent="13" name="rfid_IDRFID">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="58" parent="12" name="rfid_users_IDUser">
+    <column id="65" parent="13" name="rfid_users_IDUser">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="59" parent="12" name="fk_system_has_rfid_rfid1_idx">
+    <index id="66" parent="13" name="fk_system_has_rfid_rfid1_idx">
       <ColNames>rfid_IDRFID
 rfid_users_IDUser</ColNames>
     </index>
-    <index id="60" parent="12" name="fk_system_has_rfid_system1_idx">
+    <index id="67" parent="13" name="fk_system_has_rfid_system1_idx">
       <ColNames>system_IDSystem</ColNames>
     </index>
-    <key id="61" parent="12" name="PRIMARY">
+    <key id="68" parent="13" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>system_IDSystem
 rfid_IDRFID
 rfid_users_IDUser</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="62" parent="12" name="fk_system_has_rfid_system1">
+    <foreign-key id="69" parent="13" name="fk_system_has_rfid_system1">
       <ColNames>system_IDSystem</ColNames>
       <RefSchemaName>dbUnLockIT</RefSchemaName>
       <RefTableName>system</RefTableName>
       <RefColNames>IDSystem</RefColNames>
     </foreign-key>
-    <foreign-key id="63" parent="12" name="fk_system_has_rfid_rfid1">
+    <foreign-key id="70" parent="13" name="fk_system_has_rfid_rfid1">
       <ColNames>rfid_IDRFID
 rfid_users_IDUser</ColNames>
       <RefSchemaName>dbUnLockIT</RefSchemaName>
@@ -261,45 +289,45 @@ rfid_users_IDUser</ColNames>
       <RefColNames>IDRFID
 users_IDUser</RefColNames>
     </foreign-key>
-    <column id="64" parent="13" name="IDUser">
+    <column id="71" parent="14" name="IDUser">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="65" parent="13" name="Name">
+    <column id="72" parent="14" name="Name">
       <Position>2</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <column id="66" parent="13" name="FirstName">
+    <column id="73" parent="14" name="FirstName">
       <Position>3</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <column id="67" parent="13" name="Email">
+    <column id="74" parent="14" name="Email">
       <Position>4</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <column id="68" parent="13" name="Password">
+    <column id="75" parent="14" name="Password">
       <Position>5</Position>
       <DataType>varchar(200)|0</DataType>
     </column>
-    <column id="69" parent="13" name="Adress">
+    <column id="76" parent="14" name="Adress">
       <Position>6</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <column id="70" parent="13" name="City">
+    <column id="77" parent="14" name="City">
       <Position>7</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <column id="71" parent="13" name="PostalCode">
+    <column id="78" parent="14" name="PostalCode">
       <Position>8</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <column id="72" parent="13" name="Country">
+    <column id="79" parent="14" name="Country">
       <Position>9</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <key id="73" parent="13" name="PRIMARY">
+    <key id="80" parent="14" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>IDUser</ColNames>
       <Primary>1</Primary>

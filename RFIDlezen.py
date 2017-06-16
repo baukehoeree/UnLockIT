@@ -8,7 +8,7 @@ import mysql.connector as mc
 
 print("applicatie word geladen...")
 from DbClass import DbClass
-time.sleep(10)
+time.sleep(30)
 print("applicatie geladen!")
 
 GPIO.setwarnings(False)
@@ -44,7 +44,17 @@ while continue_reading:
             stateRFID = GPIO.input(32)
             if stateRFID == 0 :
               GPIO.output(32, GPIO.HIGH)
+              connection = mc.connect(host="localhost", user="baukeremote", passwd="remote", db="dbUnLockIT")
+              cursor = connection.cursor()
+              q1 = "INSERT INTO access(Openned, Date, Time, system_IDSystem, categories_IDCategory) VALUES(1,curdate(), CURTIME(), 1,2)"
+              cursor.execute(q1)
+              connection.commit()
             if stateRFID == 1 :
               GPIO.output(32, GPIO.LOW)
+              connection = mc.connect(host="localhost", user="baukeremote", passwd="remote", db="dbUnLockIT")
+              cursor = connection.cursor()
+              q1 = "INSERT INTO access(Openned, Date, Time, system_IDSystem, categories_IDCategory) VALUES(0,curdate(), CURTIME(),1,2)"
+              cursor.execute(q1)
+              connection.commit()
 
         time.sleep(.5)

@@ -5,7 +5,7 @@
     <link rel="icon" type="image/png" href="../static/img/favicon.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Un/Lock IT - Login</title>
+    <title>Un/Lock IT - Data Motion Sensor</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -114,7 +114,36 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
+                    <div class="col-lg-6 col-md-12">
+                            <div class="card">
+                                <div class="card-header card-header-icon" data-background-color="red">
+                                <i class="material-icons">lock</i>
+                                </div>
+                                <div class="card-content table-responsive">
+                                <h4 class="card-title">Data open/close
+                                </h4>
+                                    {% if data == [] %}
+                                    <p>Geen data om weer te geven</p>
+                                    {% else %}
+                                    <table class="table table-hover">
+                                        <thead class="text-danger">
+                                            <th>Date</th>
+                                            <th>Hour</th>
+                                        </thead>
+                                        <tbody>
 
+                                        {% for datalijn in data %}
+                                        <tr>
+                                            <td>{{ datalijn[1] }}</td>
+                                            <td>{{ datalijn[2] }}</td>
+                                        </tr>
+                                       {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
                 </div>
             </div>
         </div>

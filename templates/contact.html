@@ -55,7 +55,7 @@
                         <p>Overview</p>
                     </a>
                 </li>
-                <li  class="active">
+                <li>
                     <a data-toggle="collapse" href="#pagesExamples">
                         <i class="material-icons">show_chart</i>
                         <p>Data & Statistics
@@ -122,18 +122,18 @@
                             <div class="card-content">
                                 <h4 class="card-title">Contact Form
                                 </h4>
-                                <form>
+                                <form action="/contact" method="post">
                                     <div class="row">
                                         <div class="col-md-5 col-md-offset-1">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">First Name</label>
-                                                <input type="text" class="form-control">
+                                                <label class="control-label">First & Last Name</label>
+                                                <input type="text" class="form-control" name="fullname" required>
                                             </div>
                                         </div>
                                         <div class="col-md-5">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Last Name</label>
-                                                <input type="text" class="form-control">
+                                                <label class="control-label">Phone number</label>
+                                                <input type="text" class="form-control" name="phone" required>
                                             </div>
                                         </div>
                                     </div>
@@ -141,7 +141,7 @@
                                         <div class="col-md-10 col-md-offset-1">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Email address</label>
-                                                <input type="email" class="form-control">
+                                                <input type="email" class="form-control" name="mail" required>
                                             </div>
                                         </div>
 
@@ -150,7 +150,7 @@
                                         <div class="col-md-10  col-md-offset-1">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Message/Question</label>
-                                                <textarea class="form-control" rows="5"></textarea>
+                                                <textarea class="form-control" rows="5" name="message" required></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -172,9 +172,9 @@
                                     <h6>Telephone</h6>
                                     <p>+32 479 06 64 40</p>
                                     <h6>Address</h6>
-                                    <p>Graaf Karel De Goedelaan 5,<br> B-8500 Kortrijk</p><br>
+                                    <p>Prins Leopoldstraat 82,<br> BE-9700 Oudenaarde</p><br>
 
-                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1090.732304000661!2d3.2486657516130424!3d50.82449261436546!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf60becfabc37b39c!2sHowest%2C+campus+Graaf+Karel+de+Goedelaan!5e0!3m2!1snl!2sbe!4v1496786138542" width="500" height="150" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9107.407059957915!2d3.6098746487354845!3d50.84895775319501!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c311df9d62473b%3A0xd03455a3d3e44f1d!2sPrins+Leopoldstraat+82%2C+9700+Oudenaarde%2C+Belgium!5e0!3m2!1sen!2sus!4v1497569889847" width="500" height="150" frameborder="0" style="border:0" allowfullscreen></iframe>
                                 </div>
                             </div>
                     </div>
@@ -183,6 +183,15 @@
         </div>
         <footer class="footer">
             <div class="container-fluid">
+                                <nav class="pull-left">
+                        <ul>
+                            <li>
+                                <a href="{{ url_for('contact') }}">
+                                    Contact
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
                 <p class="copyright pull-right">
                     &copy;
                     <script>

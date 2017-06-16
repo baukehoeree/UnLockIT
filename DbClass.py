@@ -32,3 +32,65 @@ class DbClass:
         self.__cursor.execute(sqlCommand)
         self.__connection.commit()
         self.__cursor.close()
+
+    def getLocks(self, mail):
+        # Query met parameters
+        sqlQuery = "SELECT * FROM system as s, users as u,system_has_rfid as r WHERE u.IDUser=r.rfid_users_IDUser AND u.Email = '{email}'"
+        # Combineren van de query en parameter
+        sqlCommand = sqlQuery.format(email=mail)
+
+        self.__cursor.execute(sqlCommand)
+        result = self.__cursor.fetchall()
+        self.__cursor.close()
+        return result
+
+    def getDataAccess(self, lockID):
+        # Query met parameters
+        sqlQuery = "SELECT * FROM access WHERE system_IDSystem = '{idlock}'"
+        # Combineren van de query en parameter
+        sqlCommand = sqlQuery.format(idlock=lockID)
+
+        self.__cursor.execute(sqlCommand)
+        result = self.__cursor.fetchall()
+        self.__cursor.close()
+        return result
+
+    def getDataMotion(self, lockID):
+        # Query met parameters
+        sqlQuery = "SELECT * FROM motion WHERE system_IDSystem = '{idlock}'"
+        # Combineren van de query en parameter
+        sqlCommand = sqlQuery.format(idlock=lockID)
+
+        self.__cursor.execute(sqlCommand)
+        result = self.__cursor.fetchall()
+        self.__cursor.close()
+        return result
+
+    def getDataAccessDay(self, lockID):
+        # Query met parameters
+        sqlQuery = "SELECT * FROM access WHERE DATE=CURDATE() AND system_IDSystem = '{idlock}'"
+        # Combineren van de query en parameter
+        sqlCommand = sqlQuery.format(idlock=lockID)
+
+        self.__cursor.execute(sqlCommand)
+        result = self.__cursor.fetchall()
+        self.__cursor.close()
+        return result
+
+    def setLog(self, opened):
+        # Query met parameters
+        sqlQuery = "INSERT INTO access(Openned, Date, Time, system_IDSystem, categories_IDCategory) VALUES('{open}',curdate(), CURTIME(),1,1)"
+        # Combineren van de query en parameter
+        sqlCommand = sqlQuery.format(open=opened)
+        self.__cursor.execute(sqlCommand)
+        self.__connection.commit()
+        self.__cursor.close()
+
+    def setContact(self, name, phone, mail, message):
+        # Query met parameters
+        sqlQuery = "INSERT INTO contact(fullname, telephone, mail, message) VALUES('{name}','{phone}','{mail}','{message}')"
+        # Combineren van de query en parameter
+        sqlCommand = sqlQuery.format(name=name, phone=phone, mail=mail, message=message)
+        self.__cursor.execute(sqlCommand)
+        self.__connection.commit()
+        self.__cursor.close()

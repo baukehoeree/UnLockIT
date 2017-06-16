@@ -3,11 +3,13 @@ import hashlib
 import os
 import RPi.GPIO as GPIO
 import time
+import datetime
 
 print("applicatie word geladen...")
 from DbClass import DbClass
-time.sleep(10)
+time.sleep(30)
 print("applicatie geladen!")
+
 
 GPIO.setwarnings(False)
 
@@ -29,7 +31,25 @@ for pin in pins:
 def dashboard():
     if 'email' in session:
         mail_session = escape(session['email'])
-        return render_template('dashboard.html', mail_session=mail_session)
+
+        database = DbClass()
+        sloten = database.getLocks(mail_session)
+
+        database = DbClass()
+        dataAccess = database.getDataAccessDay(sloten[0][0])
+
+        print(dataAccess)
+
+        # For each pin, read the pin state and store it in the pins dictionary:
+        for pin in pins:
+            pins[pin]['state'] = GPIO.input(pin)
+        # Put the pin dictionary into the template data dictionary:
+        templateData = {
+            'pins': pins,
+            'typeSlot': sloten,
+            'data': dataAccess
+        }
+        return render_template('dashboard.html', mail_session=mail_session, **templateData)
     return redirect(url_for('login'))
 
 
@@ -78,10 +98,19 @@ def logout():
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 
-@app.route('/contact')
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
     if 'email' in session:
         mail_session = escape(session['email'])
+        if request.method == 'POST':
+            name_form = request.form['fullname']
+            phone_form = request.form['phone']
+            mail_form = request.form['mail']
+            message_form = request.form['message']
+
+            database = DbClass()
+            database.setContact(name_form,phone_form,mail_form,message_form)
+
         return render_template('contact.html', mail_session=mail_session)
     return redirect(url_for('login'))
 
@@ -125,7 +154,25 @@ def register():
 def home():
     if 'email' in session:
         mail_session = escape(session['email'])
-        return render_template('dashboard.html', mail_session=mail_session)
+
+        database = DbClass()
+        sloten = database.getLocks(mail_session)
+
+        database = DbClass()
+        dataAccess = database.getDataAccessDay(sloten[0][0])
+
+        print(dataAccess)
+
+        # For each pin, read the pin state and store it in the pins dictionary:
+        for pin in pins:
+            pins[pin]['state'] = GPIO.input(pin)
+        # Put the pin dictionary into the template data dictionary:
+        templateData = {
+            'pins': pins,
+            'typeSlot': sloten,
+            'data': dataAccess
+        }
+        return render_template('dashboard.html', mail_session=mail_session, **templateData)
     return redirect(url_for('login'))
 
 @app.route('/overview')
@@ -144,14 +191,30 @@ def overview():
 def dataOpen():
     if 'email' in session:
         mail_session = escape(session['email'])
-        return render_template('dataOpen.html', mail_session=mail_session)
+        database = DbClass()
+        sloten = database.getLocks(mail_session)
+
+        database = DbClass()
+        dataAccessPage = database.getDataAccess(sloten[0][0])
+        templateData = {
+            'data': dataAccessPage
+        }
+        return render_template('dataOpen.html', mail_session=mail_session, **templateData)
     return redirect(url_for('login'))
 
 @app.route('/dataMotion')
 def dataMotion():
     if 'email' in session:
         mail_session = escape(session['email'])
-        return render_template('dataMotion.html', mail_session=mail_session)
+        database = DbClass()
+        sloten = database.getLocks(mail_session)
+
+        database = DbClass()
+        dataMotionPage = database.getDataMotion(sloten[0][0])
+        templateData = {
+            'data': dataMotionPage
+        }
+        return render_template('dataMotion.html', mail_session=mail_session, **templateData)
     return redirect(url_for('login'))
 
 @app.route('/profile')
@@ -170,20 +233,27 @@ def action(changePin, action):
         mail_session = escape(session['email'])
         changePin = int(changePin)
         if action == "open":
-          GPIO.output(changePin, GPIO.HIGH)
+            GPIO.output(changePin, GPIO.HIGH)
+            status = 1
+            database = DbClass()
+            database.setLog(status)
         if action == "locked":
-          GPIO.output(changePin, GPIO.LOW)
+            GPIO.output(changePin, GPIO.LOW)
+            status = 0
+            database = DbClass()
+            database.setLog(status)
         if action == "toggle":
-          GPIO.output(changePin, not GPIO.input(changePin))
+            GPIO.output(changePin, not GPIO.input(changePin))
         for pin in pins:
-          pins[pin]['state'] = GPIO.input(pin)
+            pins[pin]['state'] = GPIO.input(pin)
         templateData = {
           'pins' : pins
         }
-
         return render_template('overview.html', mail_session=mail_session, **templateData)
+    return redirect(url_for('login'))
 
 if __name__ == '__main__':
+    import os
     port = int(os.environ.get("PORT",8080))
     host = "0.0.0.0"
     app.run(host=host, port=port, debug=True)

@@ -93,9 +93,6 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="material-icons">person</i> {% if mail_session %}{{ mail_session }}{% endif %}
-                                <p class="hidden-lg hidden-md">
-                                    Account
-                                </p>
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
@@ -114,98 +111,71 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-12 col-md-12">
+                    <div class="col-lg-5 col-md-12">
                         <div class="card">
                             <div class="card-header card-header-text" data-background-color="red">
-                                    <h4 class="card-title">Status</h4>
-                                    <p class="category">Status to set the locks editable or not.</p>
+                                    <h4 class="card-title">Current State</h4>
+                                    <p class="category">Here you see an overview of you're locks and their current state.</p>
                                 </div>
-                            <div class="card-content">
-                                <div class="row">
-                                    <div class="col-md-6 text-center"><button class="btn btn-danger btn-gray bigBtn"><i class="material-icons">home</i> Home</button></div>
-                                    <div class="col-md-6 text-center"><button class="btn btn-default bigBtn"><i class="material-icons">directions_walk</i> Away</button></div>
-                                </div>
+                            <div class="card-content table-responsive">
+                                    <table class="table table-hover">
+                                        <thead class="text-danger">
+                                            <th>Name</th>
+                                            <th>Serial N°</th>
+                                            <th>State</th>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>{{ typeSlot[0][2]}}</td>
+                                            <td>{{ typeSlot[0][1]}}</td>
+                                            {% if pins[12].state == true %}
+                                                <td><span class="text-success"><b>OPEN</b></span></td>
+                                            {% else %}
+                                                <td><span class="text-danger"><b>CLOSED</b></span></td>
+                                            {% endif %}
+                                        </tr>
+                                        </tbody>
+                                    </table>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-6 col-md-12">
+                    <div class="col-lg-7 col-md-12">
                             <div class="card">
                                 <div class="card-header card-header-icon" data-background-color="red">
                                 <i class="material-icons">lock</i>
-                            </div>
-                                <div class="card-content table-responsive">
-                                <h4 class="card-title">Data open/close
-                                </h4>
-                                    <table class="table table-hover">
-                                        <thead class="text-danger">
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Salary</th>
-                                            <th>Country</th>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Dakota Rice</td>
-                                                <td>$36,738</td>
-                                                <td>Niger</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Minerva Hooper</td>
-                                                <td>$23,789</td>
-                                                <td>Curaçao</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Sage Rodriguez</td>
-                                                <td>$56,142</td>
-                                                <td>Netherlands</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
                                 </div>
-                            </div>
-                        </div>
-                    <div class="col-lg-6 col-md-12">
-                            <div class="card">
-                                <div class="card-header card-header-icon" data-background-color="red">
-                                <i class="material-icons">track_changes</i>
-                            </div>
                                 <div class="card-content table-responsive">
-                                <h4 class="card-title">Data sensor
+                                <h4 class="card-title">Data open/close (Today)
                                 </h4>
+                                    {% if data == [] %}
+                                    <p>Geen data om weer te geven</p>
+                                    {% else %}
                                     <table class="table table-hover">
                                         <thead class="text-danger">
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Salary</th>
-                                            <th>Country</th>
+                                            <th>What</th>
+                                            <th>When</th>
+                                            <th>How</th>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Dakota Rice</td>
-                                                <td>$36,738</td>
-                                                <td>Niger</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Minerva Hooper</td>
-                                                <td>$23,789</td>
-                                                <td>Curaçao</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Sage Rodriguez</td>
-                                                <td>$56,142</td>
-                                                <td>Netherlands</td>
-                                            </tr>
+
+                                        {% for datalijn in data %}
+                                        <tr>
+                                            {% if datalijn[1] == 1 %}
+                                                <td>Opened</td>
+                                            {% else %}
+                                                <td>Closed</td>
+                                            {% endif %}
+                                            <td>{{ datalijn[2] }}- {{ datalijn[3] }}</td>
+                                            {% if datalijn[5] == 1 %}
+                                                <td>RFID</td>
+                                            {% elif datalijn[5] == 2 %}
+                                                <td>Application</td>
+                                            {% endif %}
+                                        </tr>
+                                       {% endfor %}
                                         </tbody>
                                     </table>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
