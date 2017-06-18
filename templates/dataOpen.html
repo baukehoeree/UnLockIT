@@ -5,7 +5,7 @@
     <link rel="icon" type="image/png" href="../static/img/favicon.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Un/Lock IT - Data Log Open/Close</title>
+    <title>Un/Lock IT - Dashboard</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -55,16 +55,16 @@
                         <p>Overview</p>
                     </a>
                 </li>
-                <li  class="active">
-                    <a data-toggle="collapse" href="#pagesExamples">
+                <li class="active">
+                    <a data-toggle="collapse" href="#pagesExamples" aria-expanded="true">
                         <i class="material-icons">show_chart</i>
                         <p>Data & Statistics
                             <b class="caret"></b>
                         </p>
                     </a>
-                    <div class="collapse" id="pagesExamples">
+                    <div class="collapse in" id="pagesExamples">
                         <ul class="nav">
-                            <li>
+                            <li class="active">
                                 <a href="{{ url_for('dataOpen') }}">Data Open/Close</a>
                             </li>
                             <li>
@@ -86,16 +86,13 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#"> Data Open/Close </a>
+                    <a class="navbar-brand" href="#"> Dashboard </a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="material-icons">person</i> {% if mail_session %}{{ mail_session }}{% endif %}
-                                <p class="hidden-lg hidden-md">
-                                    Account
-                                </p>
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
@@ -136,9 +133,9 @@
                                         {% for datalijn in data %}
                                         <tr>
                                             {% if datalijn[1] == 1 %}
-                                                <td>Opened</td>
+                                                <td><span class="text-success"><b>Opened</b></span></td>
                                             {% else %}
-                                                <td>Closed</td>
+                                                <td><span class="text-danger"><b>Closed</b></span></td>
                                             {% endif %}
                                             <td>{{ datalijn[2] }}- {{ datalijn[3] }}</td>
                                             {% if datalijn[5] == 1 %}
@@ -151,6 +148,18 @@
                                         </tbody>
                                     </table>
                                     {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12">
+                            <div class="card">
+                                <div class="card-header card-header-icon" data-background-color="red">
+                                <i class="material-icons">multiline_chart</i>
+                                </div>
+                                <div class="card-content table-responsive">
+                                <h4 class="card-title">Graph open/close
+                                </h4>
+                                    <div id="chart_div"></div>
                                 </div>
                             </div>
                         </div>
@@ -173,7 +182,7 @@
                     <script>
                         document.write(new Date().getFullYear())
                     </script>
-                    <a href="#">Un/Lock IT</a>, all rights reserved
+                    Un/Lock IT, all rights reserved
                 </p>
             </div>
         </footer>

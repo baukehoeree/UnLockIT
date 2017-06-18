@@ -5,7 +5,7 @@
     <link rel="icon" type="image/png" href="../static/img/favicon.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Un/Lock IT - Login</title>
+    <title>Un/Lock IT - Dashboard</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -43,7 +43,7 @@
         </div>
         <div class="sidebar-wrapper">
             <ul class="nav">
-                <li>
+                <li class="active">
                     <a href="{{ url_for('home') }}">
                         <i class="material-icons">dashboard</i>
                         <p>Dashboard</p>
@@ -86,20 +86,17 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#"> Data Sensor </a>
+                    <a class="navbar-brand" href="#"> Dashboard </a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="material-icons">person</i> {% if mail_session %}{{ mail_session }}{% endif %}
-                                <p class="hidden-lg hidden-md">
-                                    Account
-                                </p>
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="{{ url_for('logout') }}"><i class="material-icons">edit</i>&nbsp;&nbsp; Edit profile</a>
+                                    <a href="{{ url_for('profile') }}"><i class="material-icons">edit</i>&nbsp;&nbsp; Edit profile</a>
                                 </li>
                                 <li>
                                     <a href="{{ url_for('logout') }}" class="red"><i class="material-icons">exit_to_app</i>&nbsp;&nbsp; Log out</a>
@@ -183,7 +180,7 @@
         </div>
         <footer class="footer">
             <div class="container-fluid">
-                                <nav class="pull-left">
+                <nav class="pull-left">
                         <ul>
                             <li>
                                 <a href="{{ url_for('contact') }}">
@@ -197,7 +194,7 @@
                     <script>
                         document.write(new Date().getFullYear())
                     </script>
-                    <a href="#">Un/Lock IT</a>, all rights reserved
+                    Un/Lock IT, all rights reserved
                 </p>
             </div>
         </footer>

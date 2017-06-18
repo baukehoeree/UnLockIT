@@ -4,6 +4,7 @@ import os
 import RPi.GPIO as GPIO
 import time
 import datetime
+import json
 
 print("applicatie word geladen...")
 from DbClass import DbClass
@@ -196,10 +197,12 @@ def dataOpen():
 
         database = DbClass()
         dataAccessPage = database.getDataAccess(sloten[0][0])
+        database = DbClass()
+        dataAccessChart = database.getDataAccessChart(sloten[0][0])
         templateData = {
             'data': dataAccessPage
         }
-        return render_template('dataOpen.html', mail_session=mail_session, **templateData)
+        return render_template('dataOpen.html', mail_session=mail_session,dataChart=json.dumps(dataAccessChart), **templateData)
     return redirect(url_for('login'))
 
 @app.route('/dataMotion')
@@ -211,17 +214,41 @@ def dataMotion():
 
         database = DbClass()
         dataMotionPage = database.getDataMotion(sloten[0][0])
+
         templateData = {
             'data': dataMotionPage
         }
         return render_template('dataMotion.html', mail_session=mail_session, **templateData)
     return redirect(url_for('login'))
 
-@app.route('/profile')
+@app.route('/profile', methods=['GET', 'POST'])
 def profile():
     if 'email' in session:
         mail_session = escape(session['email'])
-        return render_template('profile.html', mail_session=mail_session)
+
+        if request.method == 'POST':
+            name_form = request.form['lastName']
+            fname_form = request.form['firstName']
+            postal_form = request.form['postal']
+            address_form = request.form['address']
+            country_form = request.form['country']
+            city_form = request.form['city']
+            email_form = request.form['email']
+            email = mail_session
+
+            database = DbClass()
+            database.updateProfile(email, name_form, fname_form, email_form, address_form, city_form, postal_form, country_form)
+
+            session['email'] = request.form['email']
+
+        database = DbClass()
+        list_users = database.getUser(mail_session)
+
+        templateData = {
+            'user': list_users
+        }
+
+        return render_template('profile.html', mail_session=mail_session, **templateData)
     return redirect(url_for('login'))
 
 

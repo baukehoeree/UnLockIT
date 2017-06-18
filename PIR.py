@@ -1,5 +1,6 @@
 from gpiozero import MotionSensor
 import mysql.connector as mc
+import time
 pir = MotionSensor(24)
 
 while True:
@@ -10,4 +11,5 @@ while True:
     q1 = "INSERT INTO motion(Date, Time, system_IDSystem) VALUES(curdate(), CURTIME(), 1)"
     cursor.execute(q1)
     connection.commit()
+    time.sleep(30)
     pir.wait_for_no_motion()

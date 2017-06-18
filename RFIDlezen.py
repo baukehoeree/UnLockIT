@@ -46,14 +46,14 @@ while continue_reading:
               GPIO.output(32, GPIO.HIGH)
               connection = mc.connect(host="localhost", user="baukeremote", passwd="remote", db="dbUnLockIT")
               cursor = connection.cursor()
-              q1 = "INSERT INTO access(Openned, Date, Time, system_IDSystem, categories_IDCategory) VALUES(1,curdate(), CURTIME(), 1,2)"
+              q1 = "INSERT INTO access(Openned, Date, Time, system_IDSystem, categories_IDCategory) VALUES(1,curdate(), CURTIME(), 1,1)"
               cursor.execute(q1)
               connection.commit()
             if stateRFID == 1 :
               GPIO.output(32, GPIO.LOW)
               connection = mc.connect(host="localhost", user="baukeremote", passwd="remote", db="dbUnLockIT")
               cursor = connection.cursor()
-              q1 = "INSERT INTO access(Openned, Date, Time, system_IDSystem, categories_IDCategory) VALUES(0,curdate(), CURTIME(),1,2)"
+              q1 = "INSERT INTO access(Openned, Date, Time, system_IDSystem, categories_IDCategory) VALUES(0,curdate(), CURTIME(),1,1)"
               cursor.execute(q1)
               connection.commit()
 

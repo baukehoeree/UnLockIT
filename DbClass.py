@@ -68,7 +68,7 @@ class DbClass:
 
     def getDataAccessDay(self, lockID):
         # Query met parameters
-        sqlQuery = "SELECT * FROM access WHERE DATE=CURDATE() AND system_IDSystem = '{idlock}'"
+        sqlQuery = "SELECT * FROM access WHERE DATE=CURDATE() AND system_IDSystem = '{idlock}' ORDER BY TIME DESC;"
         # Combineren van de query en parameter
         sqlCommand = sqlQuery.format(idlock=lockID)
 
@@ -94,3 +94,24 @@ class DbClass:
         self.__cursor.execute(sqlCommand)
         self.__connection.commit()
         self.__cursor.close()
+
+    def getDataAccessChart(self, lockID):
+        # Query met parameters
+        sqlQuery = "SELECT C.Category, Count(A.IDAccess) AS 'aantal' FROM access AS A JOIN categories AS C ON A.categories_IDCategory = C.IDCategory WHERE system_IDSystem = '{idlock}' GROUP BY C.Category;"
+        # Combineren van de query en parameter
+        sqlCommand = sqlQuery.format(idlock=lockID)
+
+        self.__cursor.execute(sqlCommand)
+        result = self.__cursor.fetchall()
+        self.__cursor.close()
+        return result
+
+    def updateProfile(self, curmail, name, fname, email, address, city, postal, country):
+        # Query met parameters
+        sqlQuery = "UPDATE users SET Name = '{name}', FirstName = '{firstname}', Email = '{mail}', Adress = '{adress}', City = '{city}', PostalCode = '{postal}', Country = '{country}' WHERE Email='{curmail}';"
+        # Combineren van de query en parameter
+        sqlCommand = sqlQuery.format(curmail=curmail,name=name, firstname=fname, mail=email, adress=address, city=city, postal=postal, country=country)
+        self.__cursor.execute(sqlCommand)
+        self.__connection.commit()
+        self.__cursor.close()
+

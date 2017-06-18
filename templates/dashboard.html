@@ -161,9 +161,9 @@
                                         {% for datalijn in data %}
                                         <tr>
                                             {% if datalijn[1] == 1 %}
-                                                <td>Opened</td>
+                                                <td><span class="text-success"><b>Opened</b></span></td>
                                             {% else %}
-                                                <td>Closed</td>
+                                                <td><span class="text-danger"><b>Closed</b></span></td>
                                             {% endif %}
                                             <td>{{ datalijn[2] }}- {{ datalijn[3] }}</td>
                                             {% if datalijn[5] == 1 %}
